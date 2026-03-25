@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SparseOIT: Improving Order-Independent Transparency 3DGS via Active Set Method</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SparseOIT: Improving Order-Independent Transparency 3DGS via Active Set Method</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Wentao Yang<sup>1, 2</sup>,</span>
+            <span class="author-block">
+              Fanzhen Kong<sup>2</sup>,</span>
+            <span class="author-block">
+              Zejian Kang<sup>1, 2</sup>,
+            </span>
+            <span class="author-block">
+              Xiangru Huang<sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Zhejiang University</span>
+            <span class="author-block"><sup>2</sup>Westlake University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark" disabled>
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv (Coming soon)</span>
+                </a>
+              </span>
+              <!-- Code Link.
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark" disabled>
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                  </a>
+              </span>
+            </div> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div style="background-color: #ffffff; display: inline-block;">
+              <img src="./static/images/teaser.png" alt="Teaser Image" style="display: block;">
+            </div>
+      <div class="content" style="text-align: center;">
+        <p>Quantitative comparison using PSNR, SSIM, and LPIPS metrics on the train scene.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            3D Gaussian Splatting (3DGS) has received tremendous popularity over the past few years due to its photorealistic visual appearance. 
+            However, 3DGS uses volumetric rendering that is not suitable for objects with non-lambertian or transparent materials. 
+            To remedy this issue, a family of Order-Independent Transparency (OIT) rendering methods propose to remove or modify the depth sorting step in the 3DGS rendering equation. 
+            However, the potential of OIT-based method is still underexplored. 
+            In this paper, we observe that the OIT modifications to the rendering equation significantly reduce the inter-independence among individual gaussian splats, 
+            resulting in very sparse variable dependencies that can be harnessed by specific optimization techniques such as active set method. To this end, we propose SparseOIT, 
+            an OIT-based 3DGS reconstruction algorithm that maintains an active set of gaussian splats and enjoys an acceleration ratio that is proportional to the potential sparsity. 
+            SparseOIT is designed by jointly considering the OIT rendering equation, the reconstruction algorithm and the geometric regularization. 
+            Through extensive experiments, we demonstrate that SparseOIT outperforms existing methods in the OIT-family by a large margin and also achieves comparable performance 
+            to the state-of-the-art 3DGS reconstruction methods based on volumetric rendering.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="hero overview">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video> -->
+      <div style="background-color: #ffffff; display: inline-block;">
+              <img src="./static/images/overview.png" alt="Teaser Image" style="display: block;">
+            </div>
+      <div class="content has-text-justified">
+        <p>
+          <strong>Overview:</strong> Our SparseOIT framework takes multi-view images as input and follows the same optimization procedure as 3DGS in the early stage. 
+          After completing the first 15,000 iterations (including the densification phase), we switch to the proposed sparsity optimization with active set method. 
+          We organize the optimization into stages separated by active set updates. Before the each stage, we update the active set and use the pre-rendered result from the previous step (corresponding to the rendering of the inactive set). 
+          We then render images using the current active set, while simultaneously updating a new pre-rendered result that will serve as the input for the next stage.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
